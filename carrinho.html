@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho - Hopi Hari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Creepster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="carrinho.css">
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      padding: 15px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar a.active {
+      color: #ff6600;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6600;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      margin: 10px 0;
+      padding: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h3 {
+      margin: 0;
+      font-size: 1.2em;
+      color: #fff;
+    }
+
+    .cart-item-info p {
+      margin: 5px 0;
+      color: #ccc;
+    }
+
+    .cart-item button {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cart-item button:hover {
+      background: darkred;
+    }
+
+    .adicionar-ingresso {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    #btn-adicionar {
+      background: #ff6600;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #btn-adicionar:hover {
+      background: #e55a00;
+    }
+
+    .cart-total {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .cart-total button {
+      background: #ff6600;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cart-total button:hover {
+      background: #e55a00;
+    }
+
+    .btn-continuar {
+      display: inline-block;
+      margin-top: 10px;
+      color: #ffb347;
+      text-decoration: none;
+    }
+
+    .btn-continuar:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html">🎢 Hopi Hari</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="atracoes.html">Atrações</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="carrinho.html" class="active">Carrinho</a></li>
+    </ul>
+  </header>
+
+  <main class="container">
+    <h1>Seu Carrinho 🎟️</h1>
+
+    <!-- Seletor de Atrações -->
+    <div class="adicionar-ingresso">
+      <select id="select-atracao">
+        <option value="" disabled selected>Escolha uma atração</option>
+        <option value="Casa Mal-Assombrada" data-img="img/6c6cd5fc-e0a5-4818-902c-1328ee720191.webp" data-precos='{"comum":120,"raro":160,"epico":200,"lendario":300}'>Casa Mal-Assombrada</option>
+        <option value="Patati e Patatá do Terror" data-img="img/Palhaço.webp" data-precos='{"comum":80,"raro":120,"epico":160,"lendario":250}'>Patati e Patatá do Terror</option>
+        <option value="Montanha-Russa das Sombras" data-img="img/Montanha-russa.webp" data-precos='{"comum":100,"raro":150,"epico":200,"lendario":300}'>Montanha-Russa das Sombras</option>
+      </select>
+
+      <select id="select-tipo" disabled>
+        <option value="" disabled selected>Escolha o tipo de ingresso</option>
+      </select>
+
+      <button id="btn-adicionar">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="cart-items" id="cart-items"></div>
+
+    <div class="cart-total">
+      <h2>Total: R$ <span id="total">0</span></h2>
+      <button id="btn-pagamento">Ir para Pagamento</button>
+      <a href="atracoes.html" class="btn-continuar">← Continuar Comprando</a>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const selectAtracao = document.querySelector("#select-atracao");
+      const selectTipo = document.querySelector("#select-tipo");
+      const btnAdicionar = document.querySelector("#btn-adicionar");
+      const cartItems = document.querySelector("#cart-items");
+      const totalEl = document.querySelector("#total");
+      const btnPagamento = document.querySelector("#btn-pagamento");
+
+      let carrinho = [];
+      let total = 0;
+
+      // Carregar carrinho salvo
+      if (localStorage.getItem("carrinho")) {
+        carrinho = JSON.parse(localStorage.getItem("carrinho"));
+        total = parseFloat(localStorage.getItem("total")) || 0;
+        atualizarCarrinho();
+      }
+
+      selectAtracao.addEventListener("change", () => {
+        const selectedOption = selectAtracao.options[selectAtracao.selectedIndex];
+        if (!selectedOption.value) return;
+
+        const precos = JSON.parse(selectedOption.dataset.precos);
+        selectTipo.innerHTML = '<option value="" disabled selected>Escolha o tipo de ingresso</option>';
+        Object.keys(precos).forEach(tipo => {
+          const option = document.createElement("option");
+          option.value = tipo;
+          option.textContent = `${tipo.toUpperCase()} - R$ ${precos[tipo]}`;
+          selectTipo.appendChild(option);
+        });
+        selectTipo.disabled = false;
+      });
+
+      btnAdicionar.addEventListener("click", () => {
+        const atracaoOption = selectAtracao.options[selectAtracao.selectedIndex];
+        const tipo = selectTipo.value;
+
+        if (!atracaoOption.value || !tipo) {
+          alert("Escolha uma atração e o tipo de ingresso!");
+          return;
+        }
+
+        const nome = atracaoOption.value;
+        const imgSrc = atracaoOption.dataset.img;
+        const precos = JSON.parse(atracaoOption.dataset.precos);
+        const preco = precos[tipo];
+
+        const novoItem = { nome, tipo, preco, imgSrc };
+        carrinho.push(novoItem);
+        total += preco;
+
+        salvarCarrinho();
+        atualizarCarrinho();
+      });
+
+      function atualizarCarrinho() {
+        cartItems.innerHTML = "";
+        carrinho.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.classList.add("cart-item");
+          div.innerHTML = `
+            <img src="${item.imgSrc}" alt="${item.nome}">
+            <div class="cart-item-info">
+              <h3>${item.nome}</h3>
+              <p>Tipo: <strong>${item.tipo.toUpperCase()}</strong></p>
+              <p>Preço: R$ ${item.preco}</p>
+            </div>
+            <button class="btn-remover">Remover</button>
+          `;
+          div.querySelector(".btn-remover").addEventListener("click", () => {
+            total -= item.preco;
+            carrinho.splice(index, 1);
+            salvarCarrinho();
+            atualizarCarrinho();
+          });
+          cartItems.appendChild(div);
+        });
+        totalEl.textContent = total.toFixed(2);
+      }
+
+      function salvarCarrinho() {
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        localStorage.setItem("total", total.toFixed(2));
+      }
+
+      // Enviar valor do carrinho para pagamento.html
+      btnPagamento.addEventListener("click", () => {
+        if (carrinho.length === 0) {
+          alert("Seu carrinho está vazio!");
+          return;
+        }
+        salvarCarrinho();
+        localStorage.setItem("valorCarrinho", total.toFixed(2));
+        window.location.href = "pagamento.html";
+      });
+    });
+  </script>
+</body>
+</html>
+

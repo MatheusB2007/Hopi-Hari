@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎥 Trailer — Hora do Horror | Hopi Hari</title>
+  <meta name="description" content="Cenas assustadoras em loop — Hora do Horror.">
+  <link rel="icon" href="horadohorror2021.png" type="image/x-icon">
+  <link rel="stylesheet" href="Susto.css">
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="index.html">🎢 Hopi Hari — Hora do Horror</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="atracoes.html">Atrações</a>
+    </nav>
+  </header>
+
+  <div class="video-container">
+    <img src="img/angel-engine.gif" alt="Cena assustadora 1" class="in-view">
+    <img src="img/boiled-one-boiled-one-phenomenon.gif" alt="Cena assustadora 2">
+    <img src="img/the-nun-valak.gif" alt="Cena assustadora 3">
+
+    <div class="overlay">
+      <h1>🎥 Cenas Assustadoras</h1>
+      <button class="btn" onclick="window.location.href='index.html'">Voltar ao site</button>
+      <button class="btn" onclick="window.location.href='susto.html'">Sentir o Susto</button>
+    </div>
+  </div>
+
+  <script>
+    const imagens = document.querySelectorAll('.video-container img');
+    let index = 0;
+
+    function mostrarImagem(i) {
+      imagens.forEach((img, idx) => {
+        img.classList.remove('in-view');
+        if (idx === i) img.classList.add('in-view');
+      });
+    }
+
+    setInterval(() => {
+      index = (index + 1) % imagens.length;
+      mostrarImagem(index);
+      document.body.style.animation = "tremor 0.4s 1";
+      setTimeout(() => document.body.style.animation = "", 400);
+    }, 5000);
+  </script>
+</body>
+</html>

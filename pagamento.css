@@ -1,0 +1,259 @@
+/* === Reset básico === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0a0a0a, #000);
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Navbar estilo amaldiçoado === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 45px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+  animation: bordaPulsante 3s infinite alternate;
+}
+
+@keyframes bordaPulsante {
+  from { box-shadow: 0 0 10px rgba(255,0,0,0.2); }
+  to { box-shadow: 0 0 25px rgba(255,0,0,0.6); }
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links li a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-links li a:hover {
+  color: #ff4444;
+  text-shadow: 0 0 12px #ff0000, 0 0 25px #ff3333;
+}
+
+.nav-links li a.active {
+  color: #ff0000;
+  text-shadow: 0 0 15px #ff0000, 0 0 25px #ff4444;
+}
+
+/* === Efeito de neblina === */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 70%);
+  animation: nevoa 10s infinite linear;
+  z-index: 0;
+}
+
+@keyframes nevoa {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(50px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+
+.navbar * { position: relative; z-index: 1; }
+
+/* === Container do pagamento === */
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* === Títulos === */
+h1, h2 {
+  text-align: center;
+  color: #ff0000;
+  text-shadow: 0 0 15px #660000;
+  font-family: 'Creepster', cursive;
+  margin-bottom: 20px;
+}
+
+/* === Valor do carrinho === */
+.valor-carrinho {
+  text-align: center;
+  font-size: 1.5em;
+  color: #ffff00;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ffcc00;
+  font-family: 'Creepster', cursive;
+}
+
+/* === Botões de pagamento === */
+.metodo-pagamento {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.metodo-pagamento button {
+  background: linear-gradient(145deg, #111, #222);
+  border: 2px solid #ff0000;
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Creepster', cursive;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.metodo-pagamento button.active,
+.metodo-pagamento button:hover {
+  background: linear-gradient(145deg, #330000, #660000);
+  box-shadow: 0 0 15px #ff0000, 0 0 30px #ff4444;
+}
+
+/* === Formulários de pagamento === */
+.pagamento-form {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pagamento-form.active {
+  display: flex;
+}
+
+.pagamento-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ff0000;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-size: 1em;
+}
+
+.pagamento-form input::placeholder {
+  color: #ffcccc;
+}
+
+.enviar {
+  background: #ff0000;
+  border: none;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-family: 'Creepster', cursive;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff4444;
+}
+
+.enviar:hover {
+  background: #cc0000;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff0000, 0 0 30px #ff8888;
+}
+
+/* === QR Code Pix e Boleto === */
+.qr-pix {
+  display: block;
+  margin: 15px auto;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+}
+
+.codigo-boleto {
+  background: rgba(0,0,0,0.4);
+  color: #ffcc00;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+/* === Mensagem de sucesso === */
+#mensagem {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #66ff66;
+}
+
+/* === Link voltar ao carrinho === */
+.voltar {
+  display: block;
+  text-align: center;
+  margin-top: 25px;
+  color: #ff4444;
+  text-decoration: none;
+  font-family: 'Creepster', cursive;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.voltar:hover {
+  text-shadow: 0 0 20px #ff4444, 0 0 30px #ff8888;
+  transform: scale(1.05);
+}
+.qr-pix {
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;   /* largura máxima do QR Code */
+  width: 80%;         /* ocupa até 80% da largura do container */
+  height: auto;       /* mantém a proporção original */
+  border: 3px solid #ff0000;  /* opcional: borda temática */
+  border-radius: 15px;         /* opcional: borda arredondada */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}

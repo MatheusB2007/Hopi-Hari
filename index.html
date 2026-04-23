@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎃 Hopi Hari - Halloween Terror</title>
+
+  <!-- 🕸️ SEO e Metadados -->
+  <meta name="description" content="Viva o terror no Hopi Hari! A Hora do Horror está de volta com atrações sombrias e experiências exclusivas. Compre seu ingresso e encare o medo!">
+  <meta property="og:title" content="🎃 Hopi Hari - Halloween Terror">
+  <meta property="og:description" content="Entre se tiver coragem... A Hora do Horror chegou!">
+  <meta property="og:image" content="horadohorror2021.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="horadohorror2021.png" type="image/x-icon">
+
+  <!-- 🎨 CSS -->
+  <link rel="stylesheet" href="Hopi.css">
+
+  <style>
+    /* 🔥 Animação de tremor */
+    @keyframes tremor {
+      0% { transform: translate(0); }
+      25% { transform: translate(5px, -5px); }
+      50% { transform: translate(-5px, 5px); }
+      75% { transform: translate(5px, 5px); }
+      100% { transform: translate(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🔥 CABEÇALHO -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">🎢 Hopi Hari</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">𝖍𝖔𝖒𝖊</a></li>
+        <li><a href="atracoes.html">𝕬𝖙𝖗𝖆𝖈̧𝖔̃𝖊𝖘</a></li>
+        <li><a href="login.html">𝕷𝖔𝖌𝖎𝖓</a></li>
+        <li><a href="carrinho.html">𝕮𝖆𝖗𝖗𝖎𝖓𝖍𝖔</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 🕸️ CONTEÚDO PRINCIPAL -->
+  <main class="container">
+    <h2>🎃 Bem-vindo ao Hopi Hari - Halloween Terror</h2>
+    <p>
+      Prepare-se para uma experiência arrepiante no parque mais divertido da América Latina!
+      Durante o Halloween, criaturas sombrias tomam conta do Hopi Hari.
+      Você está pronto para encarar o medo e a diversão?
+    </p>
+
+    <button id="sustoBtn" class="btn-efeito">Clique se tiver coragem...</button>
+    <p id="mensagem"></p>
+
+    <!-- ⏳ CONTAGEM REGRESSIVA -->
+    <div id="countdown"></div>
+
+    <!-- 🧾 VANTAGENS DOS INGRESSOS -->
+    <section class="ingressos-vantagens">
+      <h2>🎟️ Tipos de Ingressos</h2>
+
+      <div class="ingressos-container">
+        <a href="comum.html" class="ingresso-card comum">
+          <img src="img/Comum.jpg" alt="Ingresso Comum">
+          <div class="info">
+            <h3>Comum</h3>
+            <p>Acesso básico às atrações. Ideal para quem quer aproveitar o parque com tranquilidade e sem pressa.</p>
+          </div>
+        </a>
+
+        <a href="raro.html" class="ingresso-card raro">
+          <img src="img/Raro.webp" alt="Ingresso Raro">
+          <div class="info">
+            <h3>Raro</h3>
+            <p>Inclui benefícios extras, como fila rápida em atrações selecionadas e acesso antecipado a eventos especiais.</p>
+          </div>
+        </a>
+
+        <a href="epico.html" class="ingresso-card epico">
+          <img src="img/Epico.webp" alt="Ingresso Épico">
+          <div class="info">
+            <h3>Épico</h3>
+            <p>Entrada prioritária, experiências exclusivas e fotos com personagens. Perfeito para quem quer viver a magia ao máximo!</p>
+          </div>
+        </a>
+
+        <a href="lendario.html" class="ingresso-card lendario">
+          <img src="img/Lendario.webp" alt="Ingresso Lendário">
+          <div class="info">
+            <h3>Lendário</h3>
+            <p>Pacote completo com todas as vantagens: acesso VIP, experiências únicas, brindes temáticos e muito mais!</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- ⚰️ RODAPÉ -->
+  <footer>
+    <p>© 2025 Hopi Hari S.A — Edição Halloween 🎃</p>
+  </footer>
+
+  <!-- 🧙‍♂️ SCRIPT -->
+  <script>
+    // ===== SOM DE AMBIENTE (APENAS NA HOME) =====
+    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+      const somAmbiente = new Audio("scary-sound-effect-359877.mp3");
+      somAmbiente.loop = true;
+      somAmbiente.volume = 0.3;
+      somAmbiente.play().catch(() => {});
+    }
+
+    // ===== BOTÃO "Clique se tiver coragem..." =====
+    const btn = document.getElementById("sustoBtn");
+    const msg = document.getElementById("mensagem");
+    let cliqueCount = 0; // contador de cliques
+
+    btn.addEventListener("click", function() {
+      cliqueCount++;
+
+      if (cliqueCount < 3) {
+        // 💀 Efeito de tremor
+        document.body.style.animation = "tremor 0.5s linear";
+        setTimeout(() => document.body.style.animation = "", 500);
+
+        // 🔊 Som de susto opcional
+        const somSusto = new Audio("susto.mp3");
+        somSusto.volume = 0.5;
+        somSusto.play().catch(() => {});
+
+        msg.textContent = "😱 Você realmente teve coragem...";
+        msg.style.color = "crimson";
+        msg.style.textShadow = "0 0 10px red";
+
+        // ⏳ Após 1,5s, rolar até a cena assustadora
+        const videoSection = document.querySelector(".video-section");
+        if (videoSection) {
+          setTimeout(() => {
+            videoSection.scrollIntoView({ behavior: "smooth" });
+          }, 1500);
+        }
+
+      } else {
+        // ✅ Redireciona para Susto.html no 3º clique
+        window.location.href = "Susto.html";
+      }
+    });
+    
+  </script>
+</body>
+</html>

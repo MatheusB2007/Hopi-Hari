@@ -1,0 +1,111 @@
+/* Corpo e layout */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Cabeçalho */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  z-index: 10;
+}
+
+header a {
+  color: #ff2a2a;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+header a:hover {
+  text-shadow: 0 0 10px red;
+}
+
+/* Contêiner das imagens */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+/* Imagens com tamanho ajustado — um pouco menores */
+.video-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15); /* antes era 1.3 */
+  min-width: 105%;
+  min-height: 105%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out, transform 3s ease-in-out;
+  filter: brightness(0.6) contrast(1.2);
+}
+
+/* Mostra apenas a imagem atual */
+.video-container img.in-view {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.25); /* zoom leve e suave */
+  filter: brightness(1) contrast(1.3);
+}
+
+/* Efeito de tremor */
+@keyframes tremor {
+  0% { transform: translate(0); }
+  25% { transform: translate(-5px, 3px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-3px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* Overlay de texto e botões */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.3);
+  z-index: 5;
+  text-align: center;
+}
+
+.overlay h1 {
+  font-size: 3em;
+  text-shadow: 0 0 15px red;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #ff2a2a;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #ff5555;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ff2a2a;
+}

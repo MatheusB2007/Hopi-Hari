@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #111, #000);
+  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  background-color: #0d0d0d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.logo a {
+  font-family: 'Creepster', cursive;
+  font-size: 2rem;
+  color: #ff4c4c;
+}
+
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { color: #f1f1f1; font-weight: 500; text-decoration: none; }
+.nav-links a:hover, .nav-links a.active { color: #ff4c4c; }
+
+.container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 2rem; }
+
+.cadastro-box {
+  background: rgba(20,20,20,0.95);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.titulo { font-family: 'Creepster', cursive; font-size: 2.5rem; color: #ff4c4c; text-shadow: 0 0 15px #ff4c4c; }
+.sub { margin-bottom: 1.5rem; color: #ccc; }
+
+.input-group { text-align: left; margin-bottom: 1.2rem; }
+.input-group label { display: block; font-size: 0.9rem; color: #ff8800; margin-bottom: 0.3rem; }
+.input-group input {
+  width: 100%; padding: 0.7rem; border-radius: 8px; border: 2px solid #ff4c4c;
+  background-color: #1a1a1a; color: #fff; font-size: 1rem; transition: 0.3s;
+}
+.input-group input:focus { border-color: #ff8800; box-shadow: 0 0 10px #ff4c4c; outline: none; }
+
+.btn-cadastro {
+  background: #950303; border: none; width: 100%; padding: 0.9rem;
+  border-radius: 10px; color: #fff; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 1rem;
+}
+.btn-cadastro:hover { background: #ff4c4c; transform: scale(1.05); }
+
+.msg { margin-top: 1rem; color: #ff8800; font-weight: 500; min-height: 20px; }
+
+.login-link { margin-top: 1rem; color: #999; }
+.login-link a { color: #ff4c4c; text-decoration: none; }
+.login-link a:hover { color: #ff8800; }
+
+footer {
+  text-align: center;
+  background-color: #0d0d0d;
+  padding: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+  border-top: 1px solid #222;
+}

@@ -1,0 +1,140 @@
+/* ---------- BASE ---------- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #111, #000);
+  color: #f1f1f1;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background-color: #0d0d0d;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: #f1f1f1;
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar a.active,
+.navbar a:hover {
+  color: #ff4c4c;
+  text-shadow: 0 0 5px #ff4c4c;
+}
+
+/* ---------- CONTEÚDO PRINCIPAL ---------- */
+.container {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.highlight {
+  font-family: 'Creepster', cursive;
+  font-size: 3rem;
+  color: #ff4c4c;
+  text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff8800;
+  margin-bottom: 2rem;
+}
+
+/* ---------- CARDS ---------- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  background: rgba(15, 15, 15, 0.9);
+  border: 2px solid #950303;
+  border-radius: 15px;
+  width: 260px; /* largura fixa */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card a {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card img {
+  width: 100%;
+  height: 180px; /* altura fixa */
+  object-fit: cover; /* mantém proporção sem distorcer */
+  transition: transform 0.3s;
+  border-bottom: 2px solid #950303;
+  border-radius: 10px 10px 0 0;
+}
+
+.card:hover img {
+  transform: scale(1.05); /* efeito zoom */
+}
+
+.card h3 {
+  font-family: 'Creepster', cursive;
+  color: #ff4c4c;
+  margin: 0.5rem 0;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #ddd;
+  margin: 0 1rem 1rem 1rem;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px #ff4c4c;
+}
+
+/* ---------- RODAPÉ ---------- */
+footer {
+  text-align: center;
+  background-color: #0d0d0d;
+  padding: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+  border-top: 1px solid #222;
+  margin-top: 2rem;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .highlight {
+    font-size: 2.2rem;
+  }
+
+  .card img {
+    height: 160px; /* ajusta imagens para telas menores */
+  }
+}

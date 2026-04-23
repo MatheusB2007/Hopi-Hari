@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento - Hopi Hari (Modo Terror)</title>
+  <link rel="stylesheet" href="pagamento.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0a0a0a, #000);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 45px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+      border: 1px solid rgba(255, 0, 0, 0.2);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: bordaPulsante 3s infinite alternate;
+      margin-bottom: 25px;
+    }
+
+    @keyframes bordaPulsante {
+      from { box-shadow: 0 0 10px rgba(255,0,0,0.2); }
+      to { box-shadow: 0 0 25px rgba(255,0,0,0.6); }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Creepster', cursive;
+      color: #ff0000;
+      font-size: 1.7em;
+      text-shadow: 0 0 10px #ff0000;
+      cursor: pointer;
+      transition: 0.4s ease;
+    }
+
+    .logo:hover {
+      color: #fff;
+      text-shadow: 0 0 25px #ff3333, 0 0 40px #ff0000;
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      color: #eee;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff0000, transparent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links li a:hover::after { transform: scaleX(1); }
+    .nav-links li a:hover { color: #ff4444; text-shadow: 0 0 12px #ff0000, 0 0 25px #ff3333; }
+    .nav-links li a.active { color: #ff0000; text-shadow: 0 0 15px #ff0000, 0 0 25px #ff4444; }
+
+    .navbar::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 70%);
+      animation: nevoa 10s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes nevoa {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 30px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .navbar * { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255,255,255,0.05);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #ff0000;
+      text-shadow: 0 0 15px #660000;
+      font-family: 'Creepster', cursive;
+    }
+
+    .valor-carrinho {
+      text-align: center;
+      font-size: 1.5em;
+      color: #ffff00;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ffcc00;
+      font-family: 'Creepster', cursive;
+    }
+
+    .metodo-pagamento {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .metodo-pagamento button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      background: #111;
+      border: 1px solid #ff0000;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .metodo-pagamento button.active {
+      background: #ff0000;
+      color: #000;
+      box-shadow: 0 0 10px #ff4444;
+    }
+
+    .pagamento-form {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pagamento-form.active { display: flex; }
+
+    .pagamento-form input, .pagamento-form select, .pagamento-form button {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1em;
+    }
+
+    .pagamento-form button.enviar {
+      background: #ff0000;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .pagamento-form button.enviar:hover {
+      background: #ff4444;
+    }
+
+    .voltar {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #ff0000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .sucesso {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="atracoes.html">Atrações</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="carrinho.html" class="active">𝕮𝖆𝖗𝖗𝖎𝖓𝖍𝖔</a></li>
+    </ul>
+  </header>
+
+  <div class="container" id="container">
+    <div class="valor-carrinho" id="valorCarrinho"></div>
+
+    <h1>Pagamento Amaldiçoado 💳</h1>
+    <h2>Escolha seu destino...</h2>
+
+    <div class="metodo-pagamento">
+      <button data-metodo="cartao" class="active">💳 Cartão</button>
+      <button data-metodo="pix">⚡ Pix</button>
+      <button data-metodo="boleto">👻 Boleto</button>
+    </div>
+
+    <!-- Formulários de pagamento -->
+    <form class="pagamento-form active" id="form-cartao">
+      <input type="text" placeholder="Nome completo" required>
+      <input type="email" placeholder="E-mail" required>
+      <input type="text" placeholder="Número do Cartão" maxlength="16" required>
+      <input type="text" placeholder="Validade (MM/AA)" maxlength="5" required>
+      <input type="text" placeholder="CVV" maxlength="3" required>
+
+      <!-- Seleção de tipo de cartão -->
+      <label for="tipo-cartao" style="margin-top:10px; display:block;">Escolha o tipo de pagamento:</label>
+      <select id="tipo-cartao" required>
+        <option value="" disabled selected>Selecione...</option>
+        <option value="Crédito">Crédito</option>
+        <option value="Débito">Débito</option>
+        <option value="Vale">Vale/Refeição</option>
+      </select>
+
+      <button type="submit" class="enviar">Pagar com Cartão</button>
+    </form>
+
+ <form class="pagamento-form" id="form-pix">
+  <p style="text-align:center;">Escaneie o QR Code amaldiçoado abaixo...</p>
+  <img src="img/O_meu_código_QR_2-1024.jpeg" class="qr-pix" alt="QR Code Pix">
+  <button type="submit" class="enviar">Confirmar Pagamento</button>
+</form>
+
+    <form class="pagamento-form" id="form-boleto">
+      <p style="text-align:center;">Seu boleto foi invocado... cuidado 😱</p>
+      <div class="codigo-boleto">66691.13131 13131.666666 00000.131313 6 00000000666</div>
+      <button type="submit" class="enviar">Pagar... se tiver coragem</button>
+    </form>
+
+    <a href="carrinho.html" class="voltar">← Voltar ao carrinho</a>
+    <div id="mensagem" class="sucesso"></div>
+  </div>
+
+  <script>
+    // === Exibir valor do carrinho ===
+    const valorCarrinho = localStorage.getItem("valorCarrinho");
+    const divValor = document.getElementById("valorCarrinho");
+    if(valorCarrinho){
+      divValor.textContent = `Valor a pagar: R$ ${valorCarrinho}`;
+    } else {
+      divValor.textContent = "Valor do carrinho não definido.";
+    }
+
+    const botoes = document.querySelectorAll(".metodo-pagamento button");
+    const formularios = document.querySelectorAll(".pagamento-form");
+    const msg = document.querySelector("#mensagem");
+
+    // Seleção do método de pagamento
+    botoes.forEach(btn => {
+      btn.addEventListener("click", () => {
+        botoes.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const metodo = btn.dataset.metodo;
+        formularios.forEach(f => f.classList.remove("active"));
+        document.querySelector(`#form-${metodo}`).classList.add("active");
+      });
+    });
+
+    // Submissão do formulário
+    formularios.forEach(form => {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+
+        if(form.id === "form-cartao"){
+          const tipoCartao = document.getElementById("tipo-cartao").value;
+          if(!tipoCartao){
+            alert("Escolha o tipo de pagamento do cartão!");
+            return;
+          }
+          msg.textContent = `Pagamento via ${tipoCartao} realizado! ⬇️ Redirecionando...`;
+        } else {
+          msg.textContent = "Pagamento realizado! ⬇️ Redirecionando...";
+        }
+
+        setTimeout(() => { window.location.href = "index.html"; }, 2000);
+      });
+    });
+  </script>
+</body>
+</html>
